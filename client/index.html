@@ -3,12 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Interview Prep Pro | Smart Interview Coach</title>
+    <title>AI Interview Prep Pro | Master Your Interviews with AI</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -46,12 +42,12 @@
         <aside class="sidebar">
             <div class="sidebar-header"><h3>⚡ AI Prep Pro</h3></div>
             <nav>
-                <button onclick="navTo('practice')" class="nav-item" id="nav-practice"><i class="fas fa-comment-dots"></i> Practice Qs</button>
-                <button onclick="navTo('mcq')" class="nav-item" id="nav-mcq"><i class="fas fa-check-circle"></i> MCQ Test</button>
-                <button onclick="navTo('notes')" class="nav-item" id="nav-notes"><i class="fas fa-book-open"></i> Interview Notes</button>
-                <button onclick="navTo('resume')" class="nav-item" id="nav-resume"><i class="fas fa-file-alt"></i> Resume Examples</button>
-                <button onclick="navTo('score')" class="nav-item" id="nav-score"><i class="fas fa-chart-line"></i> My Score</button>
-                <button onclick="navTo('leaderboard')" class="nav-item" id="nav-leaderboard"><i class="fas fa-trophy"></i> Leaderboard</button>
+                <button onclick="navTo('practice')" class="nav-item"><i class="fas fa-comment-dots"></i> Practice Qs</button>
+                <button onclick="navTo('mcq')" class="nav-item"><i class="fas fa-check-circle"></i> MCQ Test</button>
+                <button onclick="navTo('notes')" class="nav-item"><i class="fas fa-book-open"></i> Interview Notes</button>
+                <button onclick="navTo('resume')" class="nav-item"><i class="fas fa-file-alt"></i> Resume Examples</button>
+                <button onclick="navTo('score')" class="nav-item"><i class="fas fa-chart-line"></i> My Score</button>
+                <button onclick="navTo('leaderboard')" class="nav-item"><i class="fas fa-trophy"></i> Leaderboard</button>
             </nav>
             <div class="sidebar-footer">
                 <button onclick="navTo('profile')" class="nav-item"><i class="fas fa-user-circle"></i> Profile</button>
@@ -63,15 +59,15 @@
         </main>
     </div>
 
-    <!-- AI Chat Bot (Hidden until login) -->
+    <!-- AI Chat Bot -->
     <div class="chat-container" id="chatBot" style="display: none;">
         <div class="chat-header" onclick="toggleChat()">
             <span><i class="fas fa-robot"></i> AI Interview Coach</span>
-            <span id="chat-toggle-icon"><i class="fas fa-chevron-down"></i></span>
+            <span><i class="fas fa-chevron-down"></i></span>
         </div>
         <div id="chat-body" style="display: block;">
             <div class="chat-messages" id="chatMessages">
-                <div class="ans-box" style="margin:5px; background:#1e1e1e;">🤖 Hi! Ask me anything about interviews, resume tips, or tech questions.</div>
+                <div class="ans-box">🤖 Hi! Ask me anything about interviews, resume tips, or tech questions.</div>
             </div>
             <div class="chat-input-area">
                 <input type="text" id="chatInput" placeholder="Ask AI Coach... (Press Enter)" autocomplete="off">
