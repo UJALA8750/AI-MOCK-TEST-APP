@@ -29,11 +29,13 @@ body {
     padding: 20px;
 }
 
+/* ✅ FIXED */
 .auth-card {
     background: rgba(17, 17, 17, 0.95);
     padding: 40px;
     border-radius: 32px;
-    width: 460px;
+    width: 90%;
+    max-width: 460px;
     border: 1px solid var(--border-dim);
 }
 
@@ -43,7 +45,17 @@ body {
     color: var(--primary-red);
 }
 
-.input-row { display: flex; gap: 12px; }
+/* ✅ FIXED */
+.input-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.input-row input {
+    flex: 1;
+    min-width: 120px;
+}
 
 input, textarea {
     width: 100%;
@@ -192,12 +204,13 @@ input, textarea {
     text-decoration: none;
 }
 
-/* Chat Container */
+/* ✅ FIXED CHAT */
 .chat-container {
     position: fixed;
     bottom: 25px;
     right: 25px;
-    width: 360px;
+    width: 90%;
+    max-width: 360px;
     background: #0f0f0f;
     border-radius: 28px;
     border: 1px solid #333;
@@ -269,10 +282,40 @@ input, textarea {
     text-align: left;
 }
 
+/* ✅ FINAL MOBILE FIX */
 @media (max-width: 768px) {
-    .dashboard-layout { grid-template-columns: 1fr; }
-    .sidebar { display: none; }
-    .chat-container { width: 300px; right: 10px; bottom: 10px; }
-    .content-area { padding: 20px; }
-    .resume-grid { grid-template-columns: 1fr; }
+
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .content-area {
+        padding: 15px;
+    }
+
+    .centered-panel {
+        width: 100%;
+    }
+
+    .auth-card {
+        padding: 25px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .chat-container {
+        width: 95%;
+        right: 10px;
+        bottom: 10px;
+    }
+
+    .resume-grid {
+        grid-template-columns: 1fr;
+    }
 }
