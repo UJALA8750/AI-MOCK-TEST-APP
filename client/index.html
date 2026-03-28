@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview Prep Pro | Smart Interview Coach</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Auth Container -->
+    <div id="auth-container" class="auth-wrapper">
+        <div id="login-box" class="auth-card">
+            <h1><i class="fas fa-brain"></i> LOGIN</h1>
+            <form id="login-form">
+                <input type="email" id="l-email" placeholder="Email Address" required>
+                <input type="password" id="l-pass" placeholder="Password" required>
+                <button type="submit" class="btn-pop-white">LOGIN <i class="fas fa-arrow-right"></i></button>
+            </form>
+            <p>New user? <span onclick="toggleAuth(true)" class="link-text">Sign Up</span></p>
+        </div>
+        <div id="signup-box" class="auth-card" style="display:none;">
+            <h1>SIGN UP</h1>
+            <form id="signup-form">
+                <div class="input-row">
+                    <input type="text" id="f-name" placeholder="First Name" required>
+                    <input type="text" id="s-name" placeholder="Surname" required>
+                </div>
+                <input type="number" id="u-age" placeholder="Age" required>
+                <input type="text" id="u-field" placeholder="Field of Graduation" required>
+                <input type="email" id="u-email" placeholder="Email Address" required>
+                <input type="password" id="u-pass" placeholder="Password" required>
+                <button type="submit" class="btn-pop-white">CREATE ACCOUNT</button>
+            </form>
+            <p>Back to <span onclick="toggleAuth(false)" class="link-text">Login</span></p>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="main-dashboard" class="dashboard-layout" style="display:none;">
+        <aside class="sidebar">
+            <div class="sidebar-header"><h3>⚡ AI Prep Pro</h3></div>
+            <nav>
+                <button onclick="navTo('practice')" class="nav-item" id="nav-practice"><i class="fas fa-comment-dots"></i> Practice Qs</button>
+                <button onclick="navTo('mcq')" class="nav-item" id="nav-mcq"><i class="fas fa-check-circle"></i> MCQ Test</button>
+                <button onclick="navTo('notes')" class="nav-item" id="nav-notes"><i class="fas fa-book-open"></i> Interview Notes</button>
+                <button onclick="navTo('resume')" class="nav-item" id="nav-resume"><i class="fas fa-file-alt"></i> Resume Examples</button>
+                <button onclick="navTo('score')" class="nav-item" id="nav-score"><i class="fas fa-chart-line"></i> My Score</button>
+                <button onclick="navTo('leaderboard')" class="nav-item" id="nav-leaderboard"><i class="fas fa-trophy"></i> Leaderboard</button>
+            </nav>
+            <div class="sidebar-footer">
+                <button onclick="navTo('profile')" class="nav-item"><i class="fas fa-user-circle"></i> Profile</button>
+                <button onclick="logout()" class="nav-item logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </aside>
+        <main class="content-area">
+            <div id="dynamic-content" class="centered-panel"></div>
+        </main>
+    </div>
+
+    <!-- AI Chat Bot (Hidden until login) -->
+    <div class="chat-container" id="chatBot" style="display: none;">
+        <div class="chat-header" onclick="toggleChat()">
+            <span><i class="fas fa-robot"></i> AI Interview Coach</span>
+            <span id="chat-toggle-icon"><i class="fas fa-chevron-down"></i></span>
+        </div>
+        <div id="chat-body" style="display: block;">
+            <div class="chat-messages" id="chatMessages">
+                <div class="ans-box" style="margin:5px; background:#1e1e1e;">🤖 Hi! Ask me anything about interviews, resume tips, or tech questions.</div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Ask AI Coach... (Press Enter)" autocomplete="off">
+                <button onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
