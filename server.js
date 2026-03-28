@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -13,12 +14,19 @@ app.use(cors({
 
 app.use(express.json());
 
-// Serve static files from the client folder (for Render deployment)
-app.use(express.static(path.join(__dirname, '../client')));
+// ==================== SERVE FRONTEND ====================
 
-// Handle root URL - serve the frontend
+// Serve static files from client folder
+app.use(express.static(path.join(__dirname, 'client')));
+
+// Root route
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'index.html'));
+});
+
+// Catch-all route (VERY IMPORTANT for deployment)
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'index.html'));
 });
 
 // ==================== API ROUTES ====================
@@ -100,25 +108,37 @@ app.get('/api/questions/notes', (req, res) => {
 // Leaderboard
 let leaderboard = [];
 
+// Get leaderboard
 app.get('/api/leaderboard', (req, res) => {
     res.json({ success: true, leaderboard: leaderboard.slice(0, 20) });
 });
 
+// Add score
 app.post('/api/leaderboard/add', (req, res) => {
     const { name, score } = req.body;
-    leaderboard.push({ name, score, date: new Date().toISOString() });
+
+    leaderboard.push({
+        name,
+        score,
+        date: new Date().toISOString()
+    });
+
     leaderboard.sort((a, b) => b.score - a.score);
-    if (leaderboard.length > 50) leaderboard = leaderboard.slice(0, 50);
+
+    if (leaderboard.length > 50) {
+        leaderboard = leaderboard.slice(0, 50);
+    }
+
     res.json({ success: true, leaderboard: leaderboard.slice(0, 20) });
 });
 
-// Start server
+// ==================== START SERVER ====================
+
 app.listen(PORT, () => {
     console.log('\n=================================');
     console.log('🚀 AI Interview Prep Pro Server');
     console.log('=================================');
-    console.log(`📡 Server running on: http://localhost:${PORT}`);
+    console.log(`📡 Server running on port: ${PORT}`);
     console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
-    console.log(`📊 API URL: http://localhost:${PORT}/api/health`);
     console.log('=================================\n');
 });
